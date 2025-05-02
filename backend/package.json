@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js src/lib/socket.js  src/routes/auth.route.js src/routes/message.route.js src/controllers/auth.controller.js src/controllers/message.controller.js",
-    "start": "nodemon src/index.js src/lib/socket.js  src/routes/auth.route.js src/routes/message.route.js src/controllers/auth.controller.js src/controllers/message.controller.js",
+    "dev": "nodemon index.js src/lib/socket.js  src/routes/auth.route.js src/routes/message.route.js src/controllers/auth.controller.js src/controllers/message.controller.js",
+    "start": "nodemon index.js src/lib/socket.js  src/routes/auth.route.js src/routes/message.route.js src/controllers/auth.controller.js src/controllers/message.controller.js",
     "build": "echo pnpm run build"
   },
   "keywords": [],
