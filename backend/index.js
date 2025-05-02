@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-      origin: ["http://localhost:5173", "https://refundme-worldwide.onrender.com"],
+      origin: ["http://localhost:5173", "https://refundme-worldwide.onrender.com", "https://refundme-worldwide-agents.onrender.com/"],
     credentials: true,
   })
 );
