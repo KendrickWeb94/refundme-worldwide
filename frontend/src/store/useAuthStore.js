@@ -133,16 +133,22 @@ export const useAuthStore = create((set, get) => ({
       set({ isCheckingAuth: false });
     }
   },
-
   signup: async (data) => {
     set({ isSigningUp: true });
     try {
       const res = await axiosInstance.post("/auth/signup", data);
       set({ authUser: res.data });
       toast.success("Account created successfully");
+
+      // Save the token in localStorage
+      localStorage.setItem("token", res.data.token);  // Assuming `res.data.token` is the token
+
+      // Update axiosInstance to include the token in requests
+      axiosInstance.defaults.headers.Authorization = `Bearer ${res.data.token}`;
+
       get().connectSocket();
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Signup failed");
+      toast.error(error.response.data.message);
     } finally {
       set({ isSigningUp: false });
     }
@@ -154,13 +160,21 @@ export const useAuthStore = create((set, get) => ({
       const res = await axiosInstance.post("/auth/login", data);
       set({ authUser: res.data });
       toast.success("Logged in successfully");
+
+      // Save the token in localStorage
+      localStorage.setItem("token", res.data.token);  // Assuming `res.data.token` is the token
+
+      // Update axiosInstance to include the token in requests
+      axiosInstance.defaults.headers.Authorization = `Bearer ${res.data.token}`;
+
       get().connectSocket();
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Login failed");
+      toast.error(error.response.data.message);
     } finally {
       set({ isLoggingIn: false });
     }
   },
+
 
   logout: async () => {
     try {
