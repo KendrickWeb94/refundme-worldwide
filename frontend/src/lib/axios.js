@@ -1,6 +1,7 @@
+// src/lib/axios.js
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.MODE === "development" ? "https://refundme-backend.onrender.com/" : "https://refundme-backend.onrender.com/",
-  withCredentials: true,
+  baseURL: "https://refundme-backend.onrender.com/api", // Automatically prefixes all requests with /api
+  withCredentials: true, // Ensures cookies are sent for auth
 });
