@@ -52,7 +52,7 @@ const Sidebar = () => {
                         {/*    onChange={(e) => setShowOnlineOnly(e.target.checked)}*/}
                         {/*    className="checkbox checkbox-sm accent-[#3328BF]"*/}
                         {/*/>*/}
-                        <span className="text-sm">Active agents</span>
+                        <span className="text-sm">Active Users</span>
                     </label>
                     <span className="text-xs text-green-500">({onlineUsers.length - 1} online)</span>
                 </div>
@@ -116,7 +116,7 @@ const Sidebar = () => {
 
                 {filteredUsers.length === 0 && (<div className="">
 
-                    <div className="text-center text-zinc-500 py-4">No online agents</div>
+                    <div className="text-center text-zinc-500 py-4">No online users</div>
 
                 </div>)}
             </div>
