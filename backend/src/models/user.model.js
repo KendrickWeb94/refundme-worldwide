@@ -30,8 +30,8 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: function () {
                 // Generate a unique seed based on the user's email
-                const seed = this.email || Math.random().toString(36).substring(2, 15);
-                return `https://api.dicebear.com/9.x/fun-emoji/svg?seed=${seed}`;
+                const seed = this.fullName || "User";
+                return `https://${seed}.jpg`;
             },
         },
     },
