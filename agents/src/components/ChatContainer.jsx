@@ -54,16 +54,29 @@ const ChatContainer = () => {
                         className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
                         ref={messageEndRef}
                     >
-                        <div className=" chat-image avatar">
+                        <div className=" ">
                             <div className="size-8 rounded-full border">
-                                <img
-                                    src={
-                                        message.senderId === authUser._id
-                                            ? authUser.profilePic || "/avatar.png"
-                                            : selectedUser.profilePic || "/avatar.png"
-                                    }
-                                    alt="profile pic"
-                                />
+                                <div
+                                    className="size-8 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white text-sm uppercase flex items-center justify-center">
+                                    {message.senderId === authUser._id ? authUser.fullName
+                                            .split(" ")
+                                            .map((n) => n[0])
+                                            .slice(0, 3)
+                                            .join("")
+                                        : selectedUser.fullName.split(" ")
+                                            .map((n) => n[0])
+                                            .slice(0, 3)
+                                            .join("")}
+                                </div>
+
+                                {/*<img*/}
+                                {/*    src={*/}
+                                {/*        message.senderId === authUser._id*/}
+                                {/*            ? authUser.profilePic || "/avatar.png"*/}
+                                {/*            : selectedUser.profilePic || "/avatar.png"*/}
+                                {/*    }*/}
+                                {/*    alt="profile pic"*/}
+                                {/*/>*/}
                             </div>
                         </div>
                         <div className="chat-header mb-1">
@@ -72,7 +85,7 @@ const ChatContainer = () => {
                             </time>
                         </div>
                         <div
-                            className={`chat-bubble flex  items-center justify-center flex-col ${message.senderId === authUser._id ? "bg-primary/80" : "bg-gray-500"}`}>
+                            className={`chat-bubble flex text-wrap items-center justify-center flex-col ${message.senderId === authUser._id ? "bg-primary/80" : "bg-gray-400"}`}>
                             {message.image && (
                                 <img
                                     src={message.image}
@@ -80,7 +93,7 @@ const ChatContainer = () => {
                                     className="sm:max-w-[200px] rounded-md mb-2"
                                 />
                             )}
-                            {message.text && <p className="text-white text-xs text-center">{message.text}</p>}
+                            {message.text && <p className="text-white text-wrap text-xs text-center">{message.text}</p>}
                         </div>
                     </div>
                 ))}

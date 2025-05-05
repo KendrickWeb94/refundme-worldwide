@@ -1,0 +1,213 @@
+@import '../node_modules/@fontsource/inter/index.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ... */
+
+@layer base {
+  :root {
+
+    --background: 0 0% 100%;
+
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+
+    --input: 0 0% 89.8%;
+
+    --ring: 0 0% 3.9%;
+
+    --chart-1: 12 76% 61%;
+
+    --chart-2: 173 58% 39%;
+
+    --chart-3: 197 37% 24%;
+
+    --chart-4: 43 74% 66%;
+
+    --chart-5: 27 87% 67%;
+
+    --radius: 0.5rem
+  }
+  .dark {
+
+    --background: 0 0% 3.9%;
+
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+
+    --input: 0 0% 14.9%;
+
+    --ring: 0 0% 83.1%;
+
+    --chart-1: 220 70% 50%;
+
+    --chart-2: 160 60% 45%;
+
+    --chart-3: 30 80% 55%;
+
+    --chart-4: 280 65% 60%;
+
+    --chart-5: 340 75% 55%
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  .smooth {
+    @apply transition-all ease-in-out duration-500 delay-500;
+  }
+  .form-group {
+    @apply flex flex-col gap-4;
+  }
+  .btn-primary {
+    @apply rounded-3xl px-5 py-2 cursor-pointer w-fit hover:bg-white bg-transparent border border-white transition-all ease-in-out duration-500 delay-500 hover:text-black font-medium text-white;
+  }
+  .btn-primary-1 {
+    @apply rounded-3xl px-5 py-2 cursor-pointer w-fit bg-white hover:bg-transparent hover:border hover:border-white transition-all ease-in-out duration-500 delay-500 text-black font-medium hover:text-white;
+  }
+  .btn-primary-2 {
+    @apply rounded-3xl px-5 py-2 cursor-pointer w-fit hover:bg-tw_primary bg-transparent border border-tw_primary transition-all ease-in-out duration-500 delay-500 text-tw_primary font-medium hover:text-white;
+  }
+  .btn-primary-3 {
+    @apply rounded-3xl px-5 py-2 cursor-pointer w-fit bg-tw_primary hover:bg-transparent border border-tw_primary/80 transition-all ease-in-out duration-500 delay-500 hover:text-tw_primary font-medium text-white;
+  }
+}
+
+html , body {
+  scroll-behavior: smooth;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-section-1 {
+  background: url(./assets/img/hero.png);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.tw-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+  height: auto;
+}
+
+.logo-container {
+  max-width: 12rem;
+}
+
+.change-color {
+  animation: change 3s ease infinite alternate;
+}
+@keyframes change {
+  0% {
+    color: #1e3a8a; /* Initial text color */
+  }
+  50% {
+    color: transparent; /* Make the text fill transparent */
+    -webkit-text-stroke: 0.008px white; /* No stroke initially  /* Add stroke at 100% */
+  }
+
+  100% {
+   color: white;
+   -webkit-text-stroke: 0.008px transparent;
+  }
+}
+
+.login-text {
+  -webkit-text-stroke: 1px #3328BF;
+  color: white; 
+}
+
+.grid-cat-xl {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5rem;
+}
+
+.grid-cat-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+
+.top-agents {
+  background-image: url("./assets/img/vector.png");
+  background-position:center !important ;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-color: #3328BF !important;
+}

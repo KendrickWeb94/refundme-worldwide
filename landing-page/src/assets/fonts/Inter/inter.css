@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./Inter_18pt-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./Inter_18pt-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./Inter_18pt-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('./Inter_18pt-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('./Inter_18pt-ExtraBold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('./Inter_18pt-Black.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+
+
+
+.tw-font-light {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+.tw-font-regular {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+.tw-font-medium {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+.tw-font-bold {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+.tw-font-extrabold {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+.tw-font-black {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+}

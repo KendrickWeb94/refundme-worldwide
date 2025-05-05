@@ -1,37 +1,108 @@
-import { X } from "lucide-react";
-import { useAuthStore } from "../store/useAuthStore";
-import { useChatStore } from "../store/useChatStore";
+import {useChatStore} from "../store/useChatStore";
+import {useEffect, useRef} from "react";
 
-const ChatHeader = () => {
-  const { selectedUser, setSelectedUser } = useChatStore();
-  const { onlineUsers } = useAuthStore();
+import ChatHeader from "./ChatHeader";
+import MessageInput from "./MessageInput";
+import MessageSkeleton from "./skeletons/MessageSkeleton";
+import {useAuthStore} from "../store/useAuthStore";
+import {formatMessageTime} from "../lib/utils";
 
-  return (
-    <div className="p-2.5 w-[90%] mx-auto my-4 shadow-xl rounded-md bg-white">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          {/* Avatar */}
-          <div className="avatar">
-            <div className="size-8 rounded-full relative">
-              <img src={selectedUser.profilePic || "/avatar.png"} alt={selectedUser.fullName} />
+const ChatContainer = () => {
+    const {
+        messages,
+        getMessages,
+        isMessagesLoading,
+        selectedUser,
+        subscribeToMessages,
+        unsubscribeFromMessages,
+    } = useChatStore();
+    const {authUser} = useAuthStore();
+    const messageEndRef = useRef(null);
+
+    useEffect(() => {
+        getMessages(selectedUser._id);
+
+        subscribeToMessages();
+
+        return () => unsubscribeFromMessages();
+    }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
+
+    useEffect(() => {
+        if (messageEndRef.current && messages) {
+            messageEndRef.current.scrollIntoView({behavior: "smooth"});
+        }
+    }, [messages]);
+
+    if (isMessagesLoading) {
+        return (
+            <div className="flex-1 flex flex-col overflow-auto">
+                <ChatHeader/>
+                <MessageSkeleton/>
+                <MessageInput/>
             </div>
-          </div>
+        );
+    }
 
-          {/* User info */}
-          <div>
-            <h3 className="font-medium text-gray-900">{selectedUser.fullName}</h3>
-            <p className="text-sm text-zinc-600">
-              {onlineUsers.includes(selectedUser._id) ? "Online" : "Offline"}
-            </p>
-          </div>
+    return (
+        <div className="flex-1 flex flex-col relative bg-gray-100 overflow-auto">
+            <ChatHeader/>
+
+            <div className="flex-1 overflow-y-auto  relative p-4 space-y-4">
+                {messages.map((message) => (
+                    <div
+                        key={message._id}
+                        className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
+                        ref={messageEndRef}
+                    >
+                        <div className=" ">
+                            <div className="size-8 rounded-full border">
+                                <div
+                                    className="size-8 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white text-sm uppercase flex items-center justify-center">
+                                    {message.senderId === authUser._id ? authUser.fullName
+                                            .split(" ")
+                                            .map((n) => n[0])
+                                            .slice(0, 3)
+                                            .join("")
+                                        : selectedUser.fullName.split(" ")
+                                            .map((n) => n[0])
+                                            .slice(0, 3)
+                                            .join("")}
+                                </div>
+
+                                {/*<img*/}
+                                {/*    src={*/}
+                                {/*        message.senderId === authUser._id*/}
+                                {/*            ? authUser.profilePic || "/avatar.png"*/}
+                                {/*            : selectedUser.profilePic || "/avatar.png"*/}
+                                {/*    }*/}
+                                {/*    alt="profile pic"*/}
+                                {/*/>*/}
+                            </div>
+                        </div>
+                        <div className="chat-header mb-1">
+                            <time className="text-xs opacity-50 ml-1">
+                                {formatMessageTime(message.createdAt)}
+                            </time>
+                        </div>
+                        <div
+                            className={`chat-bubble flex text-wrap items-center justify-center flex-col ${message.senderId === authUser._id ? "bg-primary/80" : "bg-gray-400"}`}>
+                            {message.image && (
+                                <img
+                                    src={message.image}
+                                    alt="Attachment"
+                                    className="sm:max-w-[200px] rounded-md mb-2"
+                                />
+                            )}
+                            {message.text && <p className="text-white text-wrap text-xs text-center">{message.text}</p>}
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="relative w-full">
+                <MessageInput/>
+            </div>
         </div>
-
-        {/* Close button */}
-        <button onClick={() => setSelectedUser(null)}>
-          <X />
-        </button>
-      </div>
-    </div>
-  );
+    );
 };
-export default ChatHeader;
+export default ChatContainer;

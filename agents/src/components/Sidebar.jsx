@@ -27,8 +27,8 @@ const Sidebar = () => {
 
     // Filter users to show only those with role="user"
     const usersOnly = users.filter(user => user.role === "user");
-    const filteredUsers = showOnlineOnly 
-        ? usersOnly.filter((user) => onlineUsers.includes(user._id)) 
+    const filteredUsers = showOnlineOnly
+        ? usersOnly.filter((user) => onlineUsers.includes(user._id))
         : usersOnly;
 
     if (isUsersLoading) return <SidebarSkeleton/>;
@@ -42,7 +42,7 @@ const Sidebar = () => {
                     <img src={RefundmeLogo} alt={"refundme logo"} className=" max-w-38 hidden lg:flex"/>
                     <img src={RefundmeLogoSmall} alt={"refundme logo"} className=" max-w-38 flex lg:hidden"/>
                 </div>
-                <hr />
+                <hr/>
                 {/* TODO: Online filter toggle */}
                 <div className="mt-3 hidden lg:flex items-center gap-2">
                     <label className="cursor-pointer flex items-center gap-2">
@@ -52,7 +52,7 @@ const Sidebar = () => {
                         {/*    onChange={(e) => setShowOnlineOnly(e.target.checked)}*/}
                         {/*    className="checkbox checkbox-sm accent-[#3328BF]"*/}
                         {/*/>*/}
-                        <span className="text-sm">Active Users</span>
+                        <span className="text-sm">Active users</span>
                     </label>
                     <span className="text-xs text-green-500">({onlineUsers.length - 1} online)</span>
                 </div>
@@ -69,11 +69,27 @@ const Sidebar = () => {
             `}
                 >
                     <div className="relative mx-auto lg:mx-0">
-                        <img
-                            src={user.profilePic || "/avatar.png"}
-                            alt={user.name}
-                            className="size-8 object-cover rounded-full"
-                        />
+                        {user?.profilePic ? (
+                            <div
+                                className="size-8 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white text-sm uppercase flex items-center justify-center">
+                                {user.fullName
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .slice(0, 3)
+                                    .join("")}
+                            </div>
+                        ) : (
+                            <div
+                                className="size-8 rounded-full bg-gradient-to-r from-bg-primary to-bg-primary/80 text-white text-sm uppercase flex items-center justify-center">
+                                {user.fullName
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .slice(0, 2)
+                                    .join("")}
+                            </div>
+                        )}
+
+
                         {onlineUsers.includes(user._id) && (<span
                             className="absolute bottom-0 right-0 size-3 bg-green-500
                   rounded-full "
@@ -89,21 +105,22 @@ const Sidebar = () => {
                         {/*</div>*/}
                     </div>
                 </button>))}
-                <Link to={"/profile"} className="flex lg:flex-row flex-col gap-4 mt-4 mx-3 p-2 lg:bg-transparent bg-primary/20 items-center lg:justify-start justify-center rounded">
-                   <img src={UserSvg} alt={"user"} className="size-6 fill-gray-500 rounded-full border"/>
+                <Link to={"/profile"}
+                      className="flex lg:flex-row flex-col gap-4 mt-4 mx-3 p-2 lg:bg-transparent bg-primary/20 items-center lg:justify-start justify-center rounded">
+                    <img src={UserSvg} alt={"user"} className="size-6 fill-gray-500 rounded-full border"/>
                     <span className="hidden lg:inline">Your Profile</span>
                 </Link>
                 <div className="mt-4 mx-3 p-2 bg-primary/20 flex flex-col items-center justify-center rounded ">
                     <button className="text-primary lg:hidden flex">
-                        <Headphones />
+                        <Headphones/>
                     </button>
-                  <div className=" hidden lg:block">
-                      <p className="text-sm text-gray-800">Have any feedback about this session?</p>
-                      <textarea
-                          placeholder="Type your feedback here..."
-                          className="bg-white/60 mt-2 p-1 w-full resize-none h-28 rounded text-sm"
-                      ></textarea>
-                  </div>
+                    <div className=" hidden lg:block">
+                        <p className="text-sm text-gray-800">Have any feedback about this session?</p>
+                        <textarea
+                            placeholder="Type your feedback here..."
+                            className="bg-white/60 mt-2 p-1 w-full resize-none h-28 rounded text-sm"
+                        ></textarea>
+                    </div>
                 </div>
                 <div className="flex items-center my-4 absolute bottom-0 w-full justify-center">
                     <button
@@ -116,7 +133,7 @@ const Sidebar = () => {
 
                 {filteredUsers.length === 0 && (<div className="">
 
-                    <div className="text-center text-zinc-500 py-4">No online users</div>
+                    <div className="text-center text-sm text-zinc-500 py-4">No active users</div>
 
                 </div>)}
             </div>

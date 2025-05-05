@@ -26,7 +26,7 @@ const Sidebar = () => {
     }, [getUsers]);
 
     // Filter users to show only those with role="user"
-    const usersOnly = users.filter(user => user.role === "agent");
+    const usersOnly = users.filter(user => user.role === "user");
     const filteredUsers = showOnlineOnly
         ? usersOnly.filter((user) => onlineUsers.includes(user._id))
         : usersOnly;
@@ -70,11 +70,14 @@ const Sidebar = () => {
                 >
                     <div className="relative mx-auto lg:mx-0">
                         {user?.profilePic ? (
-                            <img
-                                src={user.profilePic}
-                                alt={user.fullName}
-                                className="size-8 object-cover rounded-full"
-                            />
+                            <div
+                                className="size-8 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white text-sm uppercase flex items-center justify-center">
+                                {user.fullName
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .slice(0, 3)
+                                    .join("")}
+                            </div>
                         ) : (
                             <div
                                 className="size-8 rounded-full bg-gradient-to-r from-bg-primary to-bg-primary/80 text-white text-sm uppercase flex items-center justify-center">

@@ -43,11 +43,9 @@ const ProfilePage = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="relative">
                 {selectedImg || authUser?.profilePic ? (
-                    <img
-                        src={selectedImg || authUser.profilePic}
-                        alt="Profile"
-                        className="size-32 rounded-full object-cover bg-gradient-to-tl from-primary to-primary/30 border-primary"
-                    />
+                    <div className="size-32 rounded-full bg-gradient-to-tl from-primary to-primary/30 text-white text-4xl uppercase flex items-center justify-center">
+                      {getInitials(authUser?.fullName)}
+                    </div>
                 ) : (
                     <div className="size-32 rounded-full bg-gradient-to-tl from-primary to-primary/30 text-white text-4xl uppercase flex items-center justify-center">
                       {getInitials(authUser?.fullName)}
