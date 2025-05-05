@@ -26,7 +26,7 @@ const Sidebar = () => {
     }, [getUsers]);
 
     // Filter users to show only those with role="user"
-    const usersOnly = users.filter(user => user.role === "user");
+    const usersOnly = users.filter(user => user.role === "agent");
     const filteredUsers = showOnlineOnly
         ? usersOnly.filter((user) => onlineUsers.includes(user._id))
         : usersOnly;
@@ -133,7 +133,7 @@ const Sidebar = () => {
 
                 {filteredUsers.length === 0 && (<div className="">
 
-                    <div className="text-center text-sm text-zinc-500 py-4">No online agents</div>
+                    <div className="text-center text-sm text-zinc-500 py-4">No active agents</div>
 
                 </div>)}
             </div>

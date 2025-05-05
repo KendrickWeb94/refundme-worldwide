@@ -35,7 +35,7 @@ const ChatContainer = () => {
 
     if (isMessagesLoading) {
         return (
-            <div className="flex-1 flex flex-col overflow-auto">
+            <div className="flex flex-1 relative flex-col overflow-auto">
                 <ChatHeader/>
                 <MessageSkeleton/>
                 <MessageInput/>
@@ -99,7 +99,7 @@ const ChatContainer = () => {
                 ))}
             </div>
 
-            <div className="relative w-full">
+            <div className="w-full">
                 <MessageInput/>
             </div>
         </div>
