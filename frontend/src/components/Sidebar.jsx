@@ -26,7 +26,7 @@ const Sidebar = () => {
     }, [getUsers]);
 
     // Filter users to show only those with role="user"
-    const usersOnly = users.filter(user => user.role === "user");
+    const usersOnly = users.filter(user => user.role === "agent");
     const filteredUsers = showOnlineOnly
         ? usersOnly.filter((user) => onlineUsers.includes(user._id))
         : usersOnly;
@@ -39,8 +39,8 @@ const Sidebar = () => {
                 <div className="flex items-center mb-4 gap-2">
                     {/*<Users className="size-6" />*/}
                     {/*<span className="font-medium hidden lg:block">Contacts</span>*/}
-                    <img src={RefundmeLogo} alt={"refundme logo"} className=" max-w-38 hidden lg:flex"/>
-                    <img src={RefundmeLogoSmall} alt={"refundme logo"} className=" max-w-38 flex lg:hidden"/>
+
+                    <img src={RefundmeLogoSmall} alt={"refundme logo"} className=" max-w-12 w-full flex"/>
                 </div>
                 <hr/>
                 {/* TODO: Online filter toggle */}
@@ -88,7 +88,7 @@ const Sidebar = () => {
                     {/* User info - only visible on larger screens */}
                     <div className="hidden lg:block text-left min-w-0">
                         <div className="font-medium text-gray-900 truncate">{user.fullName}</div>
-                        <div className="font-regular text-sm text-gray-500 truncate">{user.location}</div>
+                        <div className="font-regular text-xs text-gray-500 truncate">{user.location}</div>
                         {/*<div className="text-sm text-zinc-600">*/}
                         {/*    {onlineUsers.includes(user._id) ? "Online" : "Offline"}*/}
                         {/*</div>*/}
@@ -116,13 +116,13 @@ const Sidebar = () => {
                         className="flex gap-2 items-center text-white rounded-md px-4 w-[90%] bg-primary justify-center py-2"
                         onClick={logout}>
                         <MessageCircleX className="size-5"/>
-                        <span className="hidden lg:flex">End session</span>
+                        <span className="hidden text-xs lg:flex">End session</span>
                     </button>
                 </div>
 
                 {filteredUsers.length === 0 && (<div className="">
 
-                    <div className="text-center text-sm text-zinc-500 py-4">No active users</div>
+                    <div className="text-center text-sm text-zinc-500 py-4">No active agents</div>
 
                 </div>)}
             </div>
