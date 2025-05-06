@@ -99,7 +99,7 @@ const ChatContainer = () => {
                 ))}
             </div>
 
-            <div className="w-full">
+            <div className="relative w-full">
                 <MessageInput/>
             </div>
         </div>

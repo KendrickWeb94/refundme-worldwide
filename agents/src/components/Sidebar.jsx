@@ -34,7 +34,7 @@ const Sidebar = () => {
     if (isUsersLoading) return <SidebarSkeleton/>;
 
     return (
-        <aside className="h-screen w-20 lg:w-64  shadow-sm bg-white relative flex flex-col transition-all duration-200">
+        <aside className="h-screen w-20 lg:w-64 hidden shadow-sm bg-white relative md:flex flex-col transition-all duration-200">
             <div className=" w-full p-5">
                 <div className="flex items-center mb-4 gap-2">
                     {/*<Users className="size-6" />*/}
@@ -44,18 +44,7 @@ const Sidebar = () => {
                 </div>
                 <hr/>
                 {/* TODO: Online filter toggle */}
-                <div className="mt-3 hidden lg:flex items-center gap-2">
-                    <label className="cursor-pointer flex items-center gap-2">
-                        {/*<input*/}
-                        {/*    type="checkbox"*/}
-                        {/*    checked={showOnlineOnly}*/}
-                        {/*    onChange={(e) => setShowOnlineOnly(e.target.checked)}*/}
-                        {/*    className="checkbox checkbox-sm accent-[#3328BF]"*/}
-                        {/*/>*/}
-                        <span className="text-sm">Active users</span>
-                    </label>
-                    <span className="text-xs text-green-500">({onlineUsers.length - 1} online)</span>
-                </div>
+
             </div>
 
             <div className="overflow-y-auto w-full py-3">
